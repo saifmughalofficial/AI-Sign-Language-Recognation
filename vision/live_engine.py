@@ -45,6 +45,7 @@ class LiveEngine:
         self._last_frame_time = 0.0
         self._dt = 0.0
         self._ai_dt = 0.0
+        self._last_result = 0.0
         self._last_dynamic = 0.0
         # results (written by the AI thread)
         self.hands: list = []
@@ -100,7 +101,7 @@ class LiveEngine:
         accurate = self.accurate
         detector = HandDetector(2, 0.5, 0.5, model_complexity=1 if accurate else 0)
         self.error = detector.error
-        last_id, idle_since, last_result = 0, time.monotonic(), time.perf_counter()
+        last_id, idle_since = 0, time.monotonic()
         while True:
             if self.accurate != accurate:                 # accuracy setting changed
                 detector.close()
@@ -125,40 +126,57 @@ class LiveEngine:
                 if w > 640:                               # HD camera: the AI only needs 640 px
                     img = cv2.resize(img, (640, int(640 * h / w)), interpolation=cv2.INTER_AREA)
                 hands = [] if paused else detector.detect(img)
-                pred = self.recognizer.recognize(hands, mode) if hands else None
-                if not hands:
-                    self.recognizer.reset_motion()
-                fingers = list(analyze(hands[0].landmarks, hands[0].aspect).ext) if hands else [0.0] * 5
-                top = list(getattr(self.recognizer.rules, "top", [])) if hands else []
             except Exception:  # noqa: BLE001 - a bad frame must not stop recognition
-                log.exception("recognition failed")
+                log.exception("hand detection failed")
                 continue
-            accepted = None
-            if pred is None:
-                self.stabilizer.update(None)
-            elif pred.dynamic:
-                if time.monotonic() - self._last_dynamic > 1.0:
-                    self._last_dynamic, accepted = time.monotonic(), pred
-            elif self.stabilizer.update(pred.label, pred.confidence):
-                accepted = pred
-            now = time.perf_counter()
-            interval = now - last_result
-            last_result = now
-            with self.lock:
-                self.hands, self.hands_seq, self.pred = hands, self.hands_seq + 1, pred
-                self.progress = self.stabilizer.progress if pred else 0.0
-                self.locked = bool(pred and self.stabilizer.locked_label == pred.label)
-                self.fingers, self.top = fingers, top
-                self._ai_dt = 0.85 * self._ai_dt + 0.15 * interval if self._ai_dt else interval
-                self.ai_fps = 1.0 / max(self._ai_dt, 1e-3)
-                if accepted:
-                    self.accepted.append((accepted.label, accepted.category, accepted.output))
-                    self._celebrate.append(f"+ {accepted.label}")
-                    self.accept_seq += 1
-                    self.last_accepted = accepted.label
+            self._recognize(hands, mode)
             rest = 1.0 / self.ai_max_hz - (time.perf_counter() - started)
             if rest > 0:
                 time.sleep(rest)
+
+    # ---- hands found by the BROWSER (cloud: MediaPipe runs in the visitor's browser) ----
+    def on_landmarks(self, hands: list, cam_fps: float = 0.0) -> None:
+        with self.lock:
+            mode, paused = self.mode, self.paused
+            self.stabilizer.configure(self.hold, self.min_conf, 0.35)
+            self.cam_fps = cam_fps
+        self._recognize([] if paused else hands, mode)
+
+    def _recognize(self, hands: list, mode: str) -> None:
+        """Rule-based recognition + stabiliser for one set of hands; publishes the results."""
+        try:
+            pred = self.recognizer.recognize(hands, mode) if hands else None
+            if not hands:
+                self.recognizer.reset_motion()
+            fingers = list(analyze(hands[0].landmarks, hands[0].aspect).ext) if hands else [0.0] * 5
+            top = list(getattr(self.recognizer.rules, "top", [])) if hands else []
+        except Exception:  # noqa: BLE001 - a bad frame must not stop recognition
+            log.exception("recognition failed")
+            return
+        accepted = None
+        if pred is None:
+            self.stabilizer.update(None)
+        elif pred.dynamic:
+            if time.monotonic() - self._last_dynamic > 1.0:
+                self._last_dynamic, accepted = time.monotonic(), pred
+        elif self.stabilizer.update(pred.label, pred.confidence):
+            accepted = pred
+        now = time.perf_counter()
+        interval = now - self._last_result if self._last_result else 0.0
+        self._last_result = now
+        with self.lock:
+            self.hands, self.hands_seq, self.pred = hands, self.hands_seq + 1, pred
+            self.progress = self.stabilizer.progress if pred else 0.0
+            self.locked = bool(pred and self.stabilizer.locked_label == pred.label)
+            self.fingers, self.top = fingers, top
+            if interval:
+                self._ai_dt = 0.85 * self._ai_dt + 0.15 * interval if self._ai_dt else interval
+                self.ai_fps = 1.0 / max(self._ai_dt, 1e-3)
+            if accepted:
+                self.accepted.append((accepted.label, accepted.category, accepted.output))
+                self._celebrate.append(f"+ {accepted.label}")
+                self.accept_seq += 1
+                self.last_accepted = accepted.label
 
     def snapshot(self, drain: bool = True) -> dict:
         with self.lock:

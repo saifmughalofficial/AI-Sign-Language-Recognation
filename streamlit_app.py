@@ -9,7 +9,8 @@ MediaPipe + recognition run in their own background thread on the newest frame, 
 the picture never waits for the AI. No WebRTC, no STUN/TURN - nothing leaves the PC.
 
 On a server (Streamlit Community Cloud) there is no webcam, so the browser sends its
-camera over WebRTC instead (streamlit-webrtc); each visitor gets their own engine.
+camera instead: MediaPipe runs IN the browser and only hand points are sent here
+(ui/browser_cam.py - no WebRTC, no TURN); each visitor gets their own engine.
 Force this mode locally with:  set SIGN_CAMERA=browser
 """
 from __future__ import annotations
@@ -39,10 +40,10 @@ from sentence.phrase_engine import PhraseEngine  # noqa: E402
 from sentence.sentence_builder import SentenceBuilder  # noqa: E402
 from ui.colors import THEMES  # noqa: E402
 from ui.web_hud import hud_html  # noqa: E402
-from vision.live_engine import LiveEngine, make_callback  # noqa: E402
+from vision.live_engine import LiveEngine  # noqa: E402
 from vision.shape_library import SHAPE_HINTS  # noqa: E402
 
-T = THEMES["dark"]                       # the original desktop palette (navy + sky blue)
+T = THEMES["dark"]                    # the original desktop palette (navy + sky blue)
 FINGER_HEX = ["#FF69B4", "#FFA03C", "#FADC3C", "#64E678", "#50D2FA"]
 
 st.set_page_config(page_title="Sign Language Assistant", page_icon="🤟", layout="wide",
@@ -234,32 +235,21 @@ with st.expander("⚙ SETTINGS", expanded=False):
 # ===================================================================== main area
 left, right = st.columns([3, 2], gap="medium")
 
-TURN_KEYS = ("HF_TOKEN", "CLOUDFLARE_TURN_KEY_ID", "CLOUDFLARE_TURN_KEY_API_TOKEN",
-             "TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN")
-
-
-def _load_turn_secrets() -> bool:
-    """Copy TURN credentials from Streamlit Secrets into env vars, where streamlit-webrtc looks."""
-    try:
-        for key in TURN_KEYS:
-            if key in st.secrets and not os.environ.get(key):
-                os.environ[key] = str(st.secrets[key])
-    except Exception:  # noqa: BLE001 - no secrets file at all
-        pass
-    return any(os.environ.get(k) for k in TURN_KEYS)
-
-
-def _browser_camera() -> bool:
-    """Cloud: the browser streams its webcam to engine.on_frame over WebRTC. Returns 'playing'."""
-    from streamlit_webrtc import WebRtcMode, webrtc_streamer
-    if not _load_turn_secrets():
-        st.info("If the camera keeps loading and never starts, the network needs a TURN relay: add a free "
-                "Hugging Face token as `HF_TOKEN` in Manage app → Settings → Secrets.")
-    ctx = webrtc_streamer(
-        key="camera", mode=WebRtcMode.SENDRECV, video_frame_callback=make_callback(engine),
-        media_stream_constraints={"video": {"width": {"ideal": 640}, "height": {"ideal": 480}}, "audio": False},
-        async_processing=True)
-    return bool(ctx.state.playing)
+@st.fragment
+def browser_camera_panel() -> None:
+    """Cloud: the browser detects hands itself and sends only the hand points (no video upload,
+    no WebRTC/TURN). Each message reruns just this fragment and feeds the recognizer."""
+    from ui.browser_cam import browser_camera
+    snap = engine.snapshot(drain=False)
+    label = None
+    if snap["label"]:
+        label = (snap["output"] or "").replace("{name}", snap["name"] or "…") or snap["label"]
+    frame, hands = browser_camera(dict(mirror=engine.mirror, label=label, progress=snap["progress"],
+                                       locked=snap["locked"]))
+    if frame is not None and frame.get("seq") != ss.get("cam_seq"):     # state persists: only new messages
+        ss.cam_seq = frame.get("seq")
+        ss.cam_on = bool(frame.get("running"))
+        engine.on_landmarks(hands if ss.cam_on else [], float(frame.get("fps") or 0))
 
 
 with left:
@@ -269,7 +259,7 @@ with left:
                 f'<span class="live">● LIVE</span><span class="r">{where}</span></h4></div>',
                 unsafe_allow_html=True)
     if CLOUD:
-        ss.cam_on = _browser_camera()
+        browser_camera_panel()
     elif stream.running:
         st.markdown(f'<div class="camwrap"><img src="http://localhost:{STREAM_PORT}/stream?s={id(stream.camera)}" '
                     'alt="camera"></div>', unsafe_allow_html=True)
