@@ -1,0 +1,24 @@
+# 100% free & open-source. No paid API, no account, no credit card.
+# Recommended: Python 3.11 (3.10-3.12 work). Install with:  pip install -r requirements.txt
+
+# --- vision -------------------------------------------------------------------
+opencv-python>=4.8,<4.11
+# 0.10.14 still contains the hand model inside the package (nothing extra to download).
+# It needs NumPy 1.x, hence the numpy pin below.
+mediapipe==0.10.14
+numpy>=1.24,<2
+
+# --- machine learning (all local) ----------------------------------------------
+scikit-learn>=1.3
+joblib>=1.3
+
+# --- interface ------------------------------------------------------------------
+Pillow>=10.0
+# (Tkinter is part of Python itself - nothing to install)
+
+# --- speech (offline) -----------------------------------------------------------
+pyttsx3>=2.90          # text-to-speech using the voices already installed in Windows
+vosk>=0.3.45           # offline speech-to-text (needs a model, see README)
+sounddevice>=0.4.6     # microphone access
+# If vosk or sounddevice fail to install, delete those two lines: the app still works
+# and Person B can type instead of speaking.

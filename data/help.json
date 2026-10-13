@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "privacy_notice": "All camera processing and recognition is performed locally. No camera frames, microphone recordings or conversations are uploaded to a cloud service.",
+  "support_levels": {
+    "supported": "Static hand shapes that a trained model can recognise from a single frame: ASL letters A-I, K-Y (all except J and Z) and numbers 0-9. Accuracy depends on the dataset you train with.",
+    "experimental": "Motion letters J and Z (need the 'Experimental dynamic gestures' setting), and the starter WORD list, which are simplified static poses defined by this project - NOT the real ASL signs, which use movement, two hands and facial expression.",
+    "unsupported": "Everything else: full ASL sentences, ASL grammar, facial expressions, fingerspelling speed, other sign languages, and any sign not listed in the Help Center."
+  },
+  "shortcuts": [
+    {
+      "key": "C",
+      "action": "Start / stop camera"
+    },
+    {
+      "key": "S",
+      "action": "Speak the sentence"
+    },
+    {
+      "key": "H",
+      "action": "Open Help"
+    },
+    {
+      "key": "V",
+      "action": "Voice mode on / off"
+    },
+    {
+      "key": "R",
+      "action": "Reset (clear) the sentence"
+    },
+    {
+      "key": "Esc",
+      "action": "Close the current dialog"
+    }
+  ],
+  "sections": [
+    {
+      "id": "camera",
+      "title": "How to Use Camera",
+      "body": [
+        "The camera is OFF when the app opens, to protect your privacy.",
+        "1. Press START CAMERA (or the C key). The live preview appears at the top-left.",
+        "2. Check the three status lights under the preview: Camera, Hand and Recognition.",
+        "3. Choose a mode on the right: ALPHABET, NUMBERS, WORDS or AUTO.",
+        "4. Show a gesture and hold it steady. A progress bar fills while the app makes sure the gesture is stable.",
+        "5. When the bar is full, the gesture is added to your sentence. Change or lower your hand before repeating the same gesture.",
+        "Use PAUSE DETECTION if you need to move your hand without adding anything.",
+        "The preview is a mirror image, like a selfie camera, so it feels natural."
+      ]
+    },
+    {
+      "id": "position",
+      "title": "How to Position Hand",
+      "body": [
+        "• Sit about an arm's length (40-70 cm) from the camera.",
+        "• Keep your whole hand and wrist inside the picture, with some space around it.",
+        "• Use a plain, uncluttered background if possible.",
+        "• Face a light source (window or lamp). Avoid a bright light behind you.",
+        "• Hold the gesture still, palm toward the camera unless the instructions say otherwise.",
+        "• Wear sleeves that contrast with your skin so the wrist is easy to see.",
+        "• For two-hand gestures keep both hands in view and not overlapping."
+      ]
+    },
+    {
+      "id": "voice",
+      "title": "Voice Mode",
+      "body": [
+        "Voice Mode lets the other person speak and shows their words as text.",
+        "1. Press VOICE MODE (or V). The microphone light turns on when listening starts.",
+        "2. The other person speaks normally. Their words appear under PERSON B - VOICE and in the history.",
+        "3. Turn on 'Read voice text aloud' in Settings if you want the text spoken as well.",
+        "Speech recognition is done by Vosk, a free offline engine. It needs a small language model folder inside the models folder (see Setup & Demo Mode).",
+        "If the model or microphone is missing, the app keeps working: Person B can simply type in the box and press SEND."
+      ]
+    },
+    {
+      "id": "sentence",
+      "title": "Sentence Builder",
+      "body": [
+        "Accepted gestures are collected and turned into a sentence for you.",
+        "• Words such as I + NEED + WATER become \"I need water.\"",
+        "• Letters are collected into a spelled word. SPACE finishes the word.",
+        "• A + L + I  =  ALI. Press USE AS NAME and you get \"My name is Ali.\"",
+        "• Type your name in the Name box and press MY NAME to insert \"My name is <your name>.\"",
+        "• DELETE removes the last letter or word. CLEAR (R) removes everything.",
+        "• CAPITALIZE forces a capital letter on the last word.",
+        "• ADD WORD lets you type any word (useful for words with no gesture yet).",
+        "• Questions (Where..., What..., Do...) automatically get a question mark."
+      ]
+    },
+    {
+      "id": "setup",
+      "title": "Setup & Demo Mode",
+      "body": [
+        "Demo Mode starts automatically when no trained model exists in the models folder.",
+        "In Demo Mode the app uses a simple finger-counting rule (which fingers are open) for a small set of poses. These are labelled \"Demo prediction\". It is NOT real ASL recognition and has no accuracy score.",
+        "To get real recognition:",
+        "1. Download a free ASL dataset (see the README or run: python setup_dataset.py).",
+        "2. Put it in dataset/raw/ .",
+        "3. Run train_model.bat (or: python training/prepare_dataset.py, then extract_features.py, then train_model.py).",
+        "4. Restart the app. The 'Demo Mode' banner disappears once models are found.",
+        "Press RUN DEMO on the dashboard to watch a full example without a camera."
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "title": "Troubleshooting",
+      "body": [
+        "Camera does not start: close other apps that use the camera (Zoom, Teams), then try another camera number in Settings.",
+        "\"No hand detected\": move your hand into view, improve the lighting, or lower 'Detection confidence' in Settings.",
+        "\"Gesture unclear\": hold the pose more steadily, or move slightly closer. You can lower 'Recognition confidence' a little.",
+        "Letters repeat or are missed: adjust 'Gesture stabilization time' in Settings.",
+        "No sound: check the Windows volume, then choose another voice in Settings and press Test voice.",
+        "Voice Mode unavailable: make sure a Vosk model folder is inside models/ and a microphone is connected. Person B can still type.",
+        "App is slow: choose 320x240 or 640x480, and raise 'Process every N frames' in Settings.",
+        "Demo Mode will not go away: models must be inside the models folder with the exact file names listed in the README.",
+        "Still stuck? Use OFFLINE HELP for a plain text guide that works even if pictures fail to load."
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy",
+      "body": [
+        "All camera processing and recognition is performed locally. No camera frames, microphone recordings or conversations are uploaded to a cloud service.",
+        "• The camera is off until you start it.",
+        "• No video or audio is saved to disk.",
+        "• Conversation history is stored only in config/history.json on this computer. Press CLEAR HISTORY to delete it, or turn off 'Save history' in Settings.",
+        "• The app never asks for an account, key or credit card."
+      ]
+    }
+  ]
+}

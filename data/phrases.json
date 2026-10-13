@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "function_words": [
+    "IS",
+    "THE",
+    "A",
+    "AN",
+    "AM",
+    "ARE",
+    "TO",
+    "OF"
+  ],
+  "copula_words": [
+    "HUNGRY",
+    "THIRSTY",
+    "TIRED",
+    "HAPPY",
+    "SAD",
+    "SICK",
+    "COLD",
+    "HOT",
+    "SORRY",
+    "READY",
+    "LOST"
+  ],
+  "subject_less_verbs": [
+    "NEED",
+    "WANT",
+    "LIKE",
+    "LOVE"
+  ],
+  "question_words": [
+    "WHERE",
+    "WHAT",
+    "WHO",
+    "WHEN",
+    "WHY",
+    "HOW",
+    "DO",
+    "CAN",
+    "ARE",
+    "IS"
+  ],
+  "templates": [
+    {
+      "match": [
+        "MY",
+        "NAME",
+        "IS",
+        "{n}"
+      ],
+      "output": "My name is {n}"
+    },
+    {
+      "match": [
+        "MY",
+        "NAME",
+        "{n}"
+      ],
+      "output": "My name is {n}"
+    },
+    {
+      "match": [
+        "NAME",
+        "IS",
+        "{n}"
+      ],
+      "output": "My name is {n}"
+    },
+    {
+      "match": [
+        "NAME",
+        "{n}"
+      ],
+      "output": "My name is {n}"
+    },
+    {
+      "match": [
+        "MY",
+        "NAME",
+        "IS"
+      ],
+      "output": "My name is {name}"
+    },
+    {
+      "match": [
+        "MY",
+        "NAME"
+      ],
+      "output": "My name is {name}"
+    },
+    {
+      "match": [
+        "NAME"
+      ],
+      "output": "My name is {name}"
+    },
+    {
+      "match": [
+        "PLEASE",
+        "HELP",
+        "ME"
+      ],
+      "output": "Please help me"
+    },
+    {
+      "match": [
+        "PLEASE",
+        "HELP"
+      ],
+      "output": "Please help me"
+    },
+    {
+      "match": [
+        "HELP"
+      ],
+      "output": "Help!",
+      "alone": true
+    },
+    {
+      "match": [
+        "WHERE",
+        "{w}"
+      ],
+      "output": "Where is the {w}?"
+    },
+    {
+      "match": [
+        "HELLO"
+      ],
+      "output": "Hello!"
+    },
+    {
+      "match": [
+        "HI"
+      ],
+      "output": "Hi!"
+    },
+    {
+      "match": [
+        "STOP"
+      ],
+      "output": "Stop!",
+      "alone": true
+    },
+    {
+      "match": [
+        "I",
+        "LOVE",
+        "YOU"
+      ],
+      "output": "I love you."
+    },
+    {
+      "match": [
+        "LOVE",
+        "YOU"
+      ],
+      "output": "I love you."
+    },
+    {
+      "match": [
+        "PLEASE",
+        "STOP"
+      ],
+      "output": "Please stop!"
+    },
+    {
+      "match": [
+        "PLEASE",
+        "WAIT"
+      ],
+      "output": "Please wait."
+    },
+    {
+      "match": [
+        "WAIT"
+      ],
+      "output": "Wait, please.",
+      "alone": true
+    },
+    {
+      "match": [
+        "CALL",
+        "{w}"
+      ],
+      "output": "Please call the {w}."
+    },
+    {
+      "match": [
+        "GOOD"
+      ],
+      "output": "Good!",
+      "alone": true
+    },
+    {
+      "match": [
+        "YES"
+      ],
+      "output": "Yes.",
+      "alone": true
+    },
+    {
+      "match": [
+        "NO"
+      ],
+      "output": "No.",
+      "alone": true
+    }
+  ],
+  "phrase_library": [
+    {
+      "phrase": "My name is {name}.",
+      "signs": [
+        "SENTENCES mode: H hand sideways",
+        "or WORDS: MY + NAME, then spell the name"
+      ],
+      "note": "Type your name in the Name box, or spell it in ALPHABET mode and press USE AS NAME."
+    },
+    {
+      "phrase": "I need food.",
+      "signs": [
+        "I",
+        "NEED",
+        "FOOD"
+      ]
+    },
+    {
+      "phrase": "I need water.",
+      "signs": [
+        "I",
+        "NEED",
+        "WATER"
+      ]
+    },
+    {
+      "phrase": "I want food.",
+      "signs": [
+        "I",
+        "WANT",
+        "FOOD"
+      ]
+    },
+    {
+      "phrase": "I want water.",
+      "signs": [
+        "I",
+        "WANT",
+        "WATER"
+      ]
+    },
+    {
+      "phrase": "I need help.",
+      "signs": [
+        "I",
+        "NEED",
+        "HELP"
+      ]
+    },
+    {
+      "phrase": "Please help me.",
+      "signs": [
+        "SENTENCES mode: thumbs-up on open palm (2 hands)",
+        "or WORDS: PLEASE + HELP + ME"
+      ]
+    },
+    {
+      "phrase": "Thank you.",
+      "signs": [
+        "THANK YOU"
+      ]
+    },
+    {
+      "phrase": "Where is the hospital?",
+      "signs": [
+        "WHERE",
+        "HOSPITAL"
+      ]
+    },
+    {
+      "phrase": "I am hungry.",
+      "signs": [
+        "I",
+        "HUNGRY"
+      ],
+      "note": "The word \"am\" is added automatically."
+    },
+    {
+      "phrase": "I am thirsty.",
+      "signs": [
+        "I",
+        "THIRSTY"
+      ],
+      "note": "The word \"am\" is added automatically."
+    },
+    {
+      "phrase": "Hello, how are you?",
+      "signs": [
+        "SENTENCES mode: open hand (spread)",
+        "or WORDS: HELLO"
+      ]
+    },
+    {
+      "phrase": "I am hungry. I need food.",
+      "signs": [
+        "SENTENCES mode: flat-O (fingertips on thumb)",
+        "or WORDS: I + HUNGRY"
+      ]
+    },
+    {
+      "phrase": "Please stop!",
+      "signs": [
+        "SENTENCES mode: flat palm, fingers together",
+        "or WORDS: PLEASE + STOP"
+      ]
+    },
+    {
+      "phrase": "Please wait a moment.",
+      "signs": [
+        "SENTENCES mode: both hands open",
+        "or WORDS: PLEASE + WAIT"
+      ]
+    },
+    {
+      "phrase": "I am fine, thank you.",
+      "signs": [
+        "SENTENCES mode: thumbs up"
+      ]
+    },
+    {
+      "phrase": "Please call a doctor.",
+      "signs": [
+        "SENTENCES mode: phone hand (thumb + pinky)",
+        "or WORDS: CALL + DOCTOR (typed)"
+      ]
+    },
+    {
+      "phrase": "I love you.",
+      "signs": [
+        "SENTENCES mode: I-love-you hand",
+        "or WORDS: I + LOVE + YOU"
+      ]
+    }
+  ]
+}

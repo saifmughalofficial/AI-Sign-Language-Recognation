@@ -1,0 +1,22 @@
+# Streamlit settings for the web edition (streamlit_app.py)
+
+[server]
+port = 8765                 # open http://localhost:8765 (Streamlit's default 8501 is not used)
+headless = true             # do not ask for an e-mail on first start
+runOnSave = false
+fileWatcherType = "none"
+
+[browser]
+gatherUsageStats = false    # nothing is sent to Streamlit
+serverAddress = "localhost"
+
+[theme]
+base = "dark"
+primaryColor = "#38BDF8"            # sky blue, same as the desktop app
+backgroundColor = "#0B1220"
+secondaryBackgroundColor = "#172033"
+textColor = "#F8FAFC"
+font = "sans serif"
+
+[client]
+toolbarMode = "minimal"

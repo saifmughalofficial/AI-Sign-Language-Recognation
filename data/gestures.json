@@ -1,0 +1,1397 @@
+{
+  "version": 2,
+  "_comment": "Add a new gesture by appending one object to 'gestures'. See README > Adding new gestures.",
+  "gestures": [
+    {
+      "gesture": "A",
+      "category": "alphabet",
+      "shape": "A",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Make a fist with your thumb resting along the side of your index finger, thumb pointing up.",
+      "sentence_examples": [
+        "Spell a name that starts with A: ALI"
+      ],
+      "demo_pose": "10000",
+      "image_fingers": "10000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_A.png"
+    },
+    {
+      "gesture": "B",
+      "category": "alphabet",
+      "shape": "B",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Hold four fingers straight up and pressed together. Fold your thumb across your palm.",
+      "sentence_examples": [
+        "Spell a name that starts with B: BILAL"
+      ],
+      "demo_pose": "01111",
+      "image_fingers": "01111",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_B.png"
+    },
+    {
+      "gesture": "C",
+      "category": "alphabet",
+      "shape": "C",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Curve your whole hand into the shape of the letter C, thumb and fingers forming the opening.",
+      "sentence_examples": [
+        "Spell a name that starts with C: CARLA"
+      ],
+      "demo_pose": null,
+      "image_fingers": "22222",
+      "orientation": "side",
+      "asl_motion": false,
+      "image": "alphabet_C.png"
+    },
+    {
+      "gesture": "D",
+      "category": "alphabet",
+      "shape": "D",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Point your index finger up. Curl the other fingers so they touch the tip of your thumb.",
+      "sentence_examples": [
+        "Spell a name that starts with D: DANA"
+      ],
+      "demo_pose": "01000",
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_D.png"
+    },
+    {
+      "gesture": "E",
+      "category": "alphabet",
+      "shape": "E",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Bend all four fingers down so the tips touch your thumb, which is tucked underneath.",
+      "sentence_examples": [
+        "Spell a name that starts with E: EMMA"
+      ],
+      "demo_pose": null,
+      "image_fingers": "02222",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_E.png"
+    },
+    {
+      "gesture": "F",
+      "category": "alphabet",
+      "shape": "F",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Touch thumb tip and index fingertip together to make a small circle. Keep the other three fingers up.",
+      "sentence_examples": [
+        "Spell a name that starts with F: FATIMA"
+      ],
+      "demo_pose": "00111",
+      "image_fingers": "22111",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_F.png"
+    },
+    {
+      "gesture": "G",
+      "category": "alphabet",
+      "shape": "G",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Turn your hand sideways. Point your index finger and thumb forward, parallel to each other. Other fingers closed.",
+      "sentence_examples": [
+        "Spell a name that starts with G: GRACE"
+      ],
+      "demo_pose": null,
+      "image_fingers": "11000",
+      "orientation": "side",
+      "asl_motion": false,
+      "image": "alphabet_G.png"
+    },
+    {
+      "gesture": "H",
+      "category": "alphabet",
+      "shape": "H",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Turn your hand sideways. Extend index and middle fingers together, pointing forward. Thumb tucked.",
+      "sentence_examples": [
+        "Spell a name that starts with H: HAMZA"
+      ],
+      "demo_pose": null,
+      "image_fingers": "01100",
+      "orientation": "side",
+      "asl_motion": false,
+      "image": "alphabet_H.png"
+    },
+    {
+      "gesture": "I",
+      "category": "alphabet",
+      "shape": "I",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Make a fist and lift only your little finger (pinky) straight up.",
+      "sentence_examples": [
+        "Spell a name that starts with I: IMRAN"
+      ],
+      "demo_pose": "00001",
+      "image_fingers": "00001",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_I.png"
+    },
+    {
+      "gesture": "J",
+      "category": "alphabet",
+      "shape": null,
+      "type": "dynamic",
+      "hands": 1,
+      "status": "experimental",
+      "instructions": "Start with the I hand shape, then draw the letter J in the air with your pinky. (Uses movement.)",
+      "sentence_examples": [
+        "Spell a name that starts with J: JAMAL"
+      ],
+      "demo_pose": null,
+      "image_fingers": "00001",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "alphabet_J.png"
+    },
+    {
+      "gesture": "K",
+      "category": "alphabet",
+      "shape": "K",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Raise index and middle fingers in a V. Place your thumb against the base of the middle finger.",
+      "sentence_examples": [
+        "Spell a name that starts with K: KARIM"
+      ],
+      "demo_pose": null,
+      "image_fingers": "11100",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_K.png"
+    },
+    {
+      "gesture": "L",
+      "category": "alphabet",
+      "shape": "L",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Extend your thumb and index finger to form an L. Other fingers closed.",
+      "sentence_examples": [
+        "Spell a name that starts with L: LAYLA"
+      ],
+      "demo_pose": "11000",
+      "image_fingers": "11000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_L.png"
+    },
+    {
+      "gesture": "M",
+      "category": "alphabet",
+      "shape": "M",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Fold index, middle and ring fingers over your thumb so the thumb peeks out under the ring finger.",
+      "sentence_examples": [
+        "Spell a name that starts with M: MARYAM"
+      ],
+      "demo_pose": null,
+      "image_fingers": "00000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_M.png"
+    },
+    {
+      "gesture": "N",
+      "category": "alphabet",
+      "shape": "N",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Fold index and middle fingers over your thumb. Thumb peeks out under the middle finger.",
+      "sentence_examples": [
+        "Spell a name that starts with N: NOOR"
+      ],
+      "demo_pose": null,
+      "image_fingers": "00000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_N.png"
+    },
+    {
+      "gesture": "O",
+      "category": "alphabet",
+      "shape": "O",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Curve all fingertips to touch your thumb, making a round O shape.",
+      "sentence_examples": [
+        "Spell a name that starts with O: OMAR"
+      ],
+      "demo_pose": null,
+      "image_fingers": "22222",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_O.png"
+    },
+    {
+      "gesture": "P",
+      "category": "alphabet",
+      "shape": "P",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Make the K hand shape, then point it downward.",
+      "sentence_examples": [
+        "Spell a name that starts with P: PETER"
+      ],
+      "demo_pose": null,
+      "image_fingers": "11100",
+      "orientation": "down",
+      "asl_motion": false,
+      "image": "alphabet_P.png"
+    },
+    {
+      "gesture": "Q",
+      "category": "alphabet",
+      "shape": "Q",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Make the G hand shape (thumb and index), then point it downward.",
+      "sentence_examples": [
+        "Spell a name that starts with Q: QASIM"
+      ],
+      "demo_pose": null,
+      "image_fingers": "11000",
+      "orientation": "down",
+      "asl_motion": false,
+      "image": "alphabet_Q.png"
+    },
+    {
+      "gesture": "R",
+      "category": "alphabet",
+      "shape": "R",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Cross your middle finger over your index finger. Other fingers closed.",
+      "sentence_examples": [
+        "Spell a name that starts with R: RANIA"
+      ],
+      "demo_pose": null,
+      "image_fingers": "01100",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_R.png"
+    },
+    {
+      "gesture": "S",
+      "category": "alphabet",
+      "shape": "S",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Make a fist with your thumb wrapped across the front of your fingers.",
+      "sentence_examples": [
+        "Spell a name that starts with S: SARA"
+      ],
+      "demo_pose": "00000",
+      "image_fingers": "00000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_S.png"
+    },
+    {
+      "gesture": "T",
+      "category": "alphabet",
+      "shape": "T",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Make a fist and tuck your thumb between your index and middle fingers.",
+      "sentence_examples": [
+        "Spell a name that starts with T: TARIQ"
+      ],
+      "demo_pose": null,
+      "image_fingers": "00000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_T.png"
+    },
+    {
+      "gesture": "U",
+      "category": "alphabet",
+      "shape": "U",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Hold index and middle fingers straight up and pressed together. Thumb holds down ring and pinky.",
+      "sentence_examples": [
+        "Spell a name that starts with U: USMAN"
+      ],
+      "demo_pose": null,
+      "image_fingers": "01100",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_U.png"
+    },
+    {
+      "gesture": "V",
+      "category": "alphabet",
+      "shape": "V",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Raise index and middle fingers and spread them apart (peace sign).",
+      "sentence_examples": [
+        "Spell a name that starts with V: VERA"
+      ],
+      "demo_pose": "01100",
+      "image_fingers": "01100",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_V.png"
+    },
+    {
+      "gesture": "W",
+      "category": "alphabet",
+      "shape": "W",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Raise and spread index, middle and ring fingers. Thumb holds down the pinky.",
+      "sentence_examples": [
+        "Spell a name that starts with W: WALEED"
+      ],
+      "demo_pose": "01110",
+      "image_fingers": "01110",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_W.png"
+    },
+    {
+      "gesture": "X",
+      "category": "alphabet",
+      "shape": "X",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Make a fist and bend your index finger into a hook.",
+      "sentence_examples": [
+        "Spell a name that starts with X: XAVIER"
+      ],
+      "demo_pose": null,
+      "image_fingers": "02000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_X.png"
+    },
+    {
+      "gesture": "Y",
+      "category": "alphabet",
+      "shape": "Y",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Extend your thumb and pinky, fold the other fingers (\"hang loose\").",
+      "sentence_examples": [
+        "Spell a name that starts with Y: YUSUF"
+      ],
+      "demo_pose": "10001",
+      "image_fingers": "10001",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_Y.png"
+    },
+    {
+      "gesture": "Z",
+      "category": "alphabet",
+      "shape": null,
+      "type": "dynamic",
+      "hands": 1,
+      "status": "experimental",
+      "instructions": "Point your index finger and draw the letter Z in the air. (Uses movement.)",
+      "sentence_examples": [
+        "Spell a name that starts with Z: ZARA"
+      ],
+      "demo_pose": null,
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "alphabet_Z.png"
+    },
+    {
+      "gesture": "0",
+      "category": "number",
+      "shape": "O",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Curve all fingers to touch the thumb, making an O shape.",
+      "sentence_examples": [
+        "I am in room 0."
+      ],
+      "demo_pose": "00000",
+      "image_fingers": "22222",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_0.png"
+    },
+    {
+      "gesture": "1",
+      "category": "number",
+      "shape": "ONE",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Point your index finger straight up. Other fingers and thumb closed.",
+      "sentence_examples": [
+        "I am in room 1."
+      ],
+      "demo_pose": "01000",
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_1.png"
+    },
+    {
+      "gesture": "2",
+      "category": "number",
+      "shape": "TWO",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Raise index and middle fingers, spread apart. Thumb holds down ring and pinky.",
+      "sentence_examples": [
+        "I am in room 2."
+      ],
+      "demo_pose": "01100",
+      "image_fingers": "01100",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_2.png"
+    },
+    {
+      "gesture": "3",
+      "category": "number",
+      "shape": "THREE",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Extend thumb, index and middle fingers. Ring and pinky folded.",
+      "sentence_examples": [
+        "I am in room 3."
+      ],
+      "demo_pose": "11100",
+      "image_fingers": "11100",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_3.png"
+    },
+    {
+      "gesture": "4",
+      "category": "number",
+      "shape": "FOUR",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Raise four fingers, spread apart. Fold your thumb across the palm.",
+      "sentence_examples": [
+        "I am in room 4."
+      ],
+      "demo_pose": "01111",
+      "image_fingers": "01111",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_4.png"
+    },
+    {
+      "gesture": "5",
+      "category": "number",
+      "shape": "FIVE",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Open your hand with all five fingers spread.",
+      "sentence_examples": [
+        "I am in room 5."
+      ],
+      "demo_pose": "11111",
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_5.png"
+    },
+    {
+      "gesture": "6",
+      "category": "number",
+      "shape": "W",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Touch your thumb to your little finger. Keep index, middle and ring fingers up.",
+      "sentence_examples": [
+        "I am in room 6."
+      ],
+      "demo_pose": "01110",
+      "image_fingers": "21112",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_6.png"
+    },
+    {
+      "gesture": "7",
+      "category": "number",
+      "shape": "SEVEN",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Touch your thumb to your ring finger. Keep index, middle and pinky up.",
+      "sentence_examples": [
+        "I am in room 7."
+      ],
+      "demo_pose": "11000",
+      "image_fingers": "21121",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_7.png"
+    },
+    {
+      "gesture": "8",
+      "category": "number",
+      "shape": "EIGHT",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Touch your thumb to your middle finger. Keep index, ring and pinky up.",
+      "sentence_examples": [
+        "I am in room 8."
+      ],
+      "demo_pose": "10001",
+      "image_fingers": "21211",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_8.png"
+    },
+    {
+      "gesture": "9",
+      "category": "number",
+      "shape": "F",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Touch your thumb to your index finger. Keep middle, ring and pinky up.",
+      "sentence_examples": [
+        "I am in room 9."
+      ],
+      "demo_pose": "10000",
+      "image_fingers": "22111",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "number_9.png"
+    },
+    {
+      "gesture": "HELLO",
+      "category": "word",
+      "shape": "OPEN",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Open hand facing the camera, all five fingers spread (a wave).",
+      "sentence_examples": [
+        "Hello!",
+        "Hello, my name is Ali."
+      ],
+      "demo_pose": "11111",
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_HELLO.png"
+    },
+    {
+      "gesture": "HI",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 1,
+      "status": "reference",
+      "instructions": "Casual wave: open hand raised beside your head, small wave. (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "Hi!"
+      ],
+      "demo_pose": null,
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_HI.png"
+    },
+    {
+      "gesture": "YES",
+      "category": "word",
+      "shape": "S",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Make a fist with the thumb across the front of the fingers (ASL 'yes' is this fist nodding).",
+      "sentence_examples": [
+        "Yes, please."
+      ],
+      "demo_pose": "00000",
+      "image_fingers": "00000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_YES.png"
+    },
+    {
+      "gesture": "NO",
+      "category": "word",
+      "shape": "PINCH2",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Index and middle finger tips touch the thumb tip, ring and pinky folded (ASL 'no' snap).",
+      "sentence_examples": [
+        "No, thank you."
+      ],
+      "demo_pose": "01100",
+      "image_fingers": "01100",
+      "orientation": "side",
+      "asl_motion": true,
+      "image": "word_NO.png"
+    },
+    {
+      "gesture": "PLEASE",
+      "category": "word",
+      "shape": "PRAY2",
+      "type": "static",
+      "hands": 2,
+      "status": "supported",
+      "instructions": "Both flat hands pressed together, fingertips touching (🙏).",
+      "sentence_examples": [
+        "Please help me."
+      ],
+      "demo_pose": "10011",
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_PLEASE.png"
+    },
+    {
+      "gesture": "THANK YOU",
+      "category": "word",
+      "shape": "FLAT_THUMB",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Flat hand, four fingers together, thumb sticking out to the side.",
+      "sentence_examples": [
+        "Thank you."
+      ],
+      "demo_pose": "10001",
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_THANK_YOU.png"
+    },
+    {
+      "gesture": "SORRY",
+      "category": "word",
+      "shape": "A",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "A-hand: fist with the thumb resting along the side (ASL 'sorry' circles this on the chest).",
+      "sentence_examples": [
+        "Sorry."
+      ],
+      "demo_pose": "10010",
+      "image_fingers": "00000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_SORRY.png"
+    },
+    {
+      "gesture": "HELP",
+      "category": "word",
+      "shape": "HELP2",
+      "type": "static",
+      "hands": 2,
+      "status": "supported",
+      "instructions": "Thumbs-up on one hand, resting on the open palm of the other hand.",
+      "sentence_examples": [
+        "I need help.",
+        "Please help me."
+      ],
+      "demo_pose": "10000",
+      "image_fingers": "10000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_HELP.png"
+    },
+    {
+      "gesture": "FOOD",
+      "category": "word",
+      "shape": "O",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "All fingertips touch the thumb tip (flat-O), as if bringing food to the mouth.",
+      "sentence_examples": [
+        "I need food.",
+        "I want food."
+      ],
+      "demo_pose": "00111",
+      "image_fingers": "22222",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_FOOD.png"
+    },
+    {
+      "gesture": "WATER",
+      "category": "word",
+      "shape": "W",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "W hand: index, middle and ring fingers up, thumb holds the pinky down.",
+      "sentence_examples": [
+        "I need water.",
+        "I want water."
+      ],
+      "demo_pose": "01110",
+      "image_fingers": "01110",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_WATER.png"
+    },
+    {
+      "gesture": "HOME",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 1,
+      "status": "reference",
+      "instructions": "Bunch fingertips, touch near your mouth, then touch your cheek. (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "I want to go home."
+      ],
+      "demo_pose": null,
+      "image_fingers": "22222",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_HOME.png"
+    },
+    {
+      "gesture": "SCHOOL",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 2,
+      "status": "reference",
+      "instructions": "Clap your flat hands together twice. (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "Where is the school?"
+      ],
+      "demo_pose": null,
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_SCHOOL.png"
+    },
+    {
+      "gesture": "HOSPITAL",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 1,
+      "status": "reference",
+      "instructions": "Draw a cross on your upper arm with your H-hand (index and middle fingers). (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "Where is the hospital?"
+      ],
+      "demo_pose": null,
+      "image_fingers": "01100",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_HOSPITAL.png"
+    },
+    {
+      "gesture": "DOCTOR",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 2,
+      "status": "reference",
+      "instructions": "Tap the wrist of your other hand (where a pulse is felt) with an M or D hand. (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "I need a doctor."
+      ],
+      "demo_pose": null,
+      "image_fingers": "01100",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_DOCTOR.png"
+    },
+    {
+      "gesture": "GOOD",
+      "category": "word",
+      "shape": "THUMBS_UP",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Thumbs up 👍: fist with the thumb pointing straight up.",
+      "sentence_examples": [
+        "Good morning."
+      ],
+      "demo_pose": "10111",
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_GOOD.png"
+    },
+    {
+      "gesture": "BAD",
+      "category": "word",
+      "shape": "THUMBS_DOWN",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Thumbs down 👎: fist with the thumb pointing down.",
+      "sentence_examples": [
+        "That is bad."
+      ],
+      "demo_pose": null,
+      "image_fingers": "11111",
+      "orientation": "down",
+      "asl_motion": true,
+      "image": "word_BAD.png"
+    },
+    {
+      "gesture": "STOP",
+      "category": "word",
+      "shape": "PALM",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Flat palm facing the camera, fingers together and pointing up, thumb tucked in ✋.",
+      "sentence_examples": [
+        "Stop!"
+      ],
+      "demo_pose": "01111",
+      "image_fingers": "11111",
+      "orientation": "side",
+      "asl_motion": true,
+      "image": "word_STOP.png"
+    },
+    {
+      "gesture": "GO",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 2,
+      "status": "reference",
+      "instructions": "Point both index fingers and swing them forward in an arc. (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "Let's go."
+      ],
+      "demo_pose": "11110",
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_GO.png"
+    },
+    {
+      "gesture": "WAIT",
+      "category": "word",
+      "shape": "WAIT2",
+      "type": "static",
+      "hands": 2,
+      "status": "supported",
+      "instructions": "Both hands open, palms towards the camera, held apart (🙌 'wait a moment').",
+      "sentence_examples": [
+        "Please wait."
+      ],
+      "demo_pose": null,
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_WAIT.png"
+    },
+    {
+      "gesture": "COME",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 2,
+      "status": "reference",
+      "instructions": "Both index fingers point out, then curl in toward you. (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "Come here."
+      ],
+      "demo_pose": null,
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_COME.png"
+    },
+    {
+      "gesture": "LEAVE",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 2,
+      "status": "reference",
+      "instructions": "Both open hands, palms down, pull up and away while closing into fists. (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "I want to leave."
+      ],
+      "demo_pose": null,
+      "image_fingers": "11111",
+      "orientation": "down",
+      "asl_motion": true,
+      "image": "word_LEAVE.png"
+    },
+    {
+      "gesture": "NAME",
+      "category": "word",
+      "shape": "H",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "H hand: index and middle finger together, pointing sideways.",
+      "sentence_examples": [
+        "My name is Ali."
+      ],
+      "demo_pose": "01001",
+      "image_fingers": "01100",
+      "orientation": "side",
+      "asl_motion": true,
+      "image": "word_NAME.png"
+    },
+    {
+      "gesture": "MY",
+      "category": "word",
+      "shape": "FLAT_SIDE",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Flat hand held sideways across the body, fingers together (like a palm on the chest).",
+      "sentence_examples": [
+        "My name is Ali."
+      ],
+      "demo_pose": "00100",
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_MY.png"
+    },
+    {
+      "gesture": "I",
+      "category": "word",
+      "shape": "I",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Pinky finger up, other fingers folded (the letter I).",
+      "sentence_examples": [
+        "I need water."
+      ],
+      "demo_pose": "01000",
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_I.png"
+    },
+    {
+      "gesture": "YOU",
+      "category": "word",
+      "shape": "POINT_SIDE",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Point the index finger sideways or at the other person 👉.",
+      "sentence_examples": [
+        "Do you need water?"
+      ],
+      "demo_pose": "11000",
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_YOU.png"
+    },
+    {
+      "gesture": "ME",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 1,
+      "status": "reference",
+      "instructions": "Point your index finger at your chest. (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "Please help me."
+      ],
+      "demo_pose": null,
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_ME.png"
+    },
+    {
+      "gesture": "NEED",
+      "category": "word",
+      "shape": "X",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "X hand: index finger raised and hooked, other fingers folded.",
+      "sentence_examples": [
+        "I need water."
+      ],
+      "demo_pose": "00110",
+      "image_fingers": "02000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_NEED.png"
+    },
+    {
+      "gesture": "WANT",
+      "category": "word",
+      "shape": "CLAW",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Claw hand: all fingers spread and bent like claws, thumb out.",
+      "sentence_examples": [
+        "I want food."
+      ],
+      "demo_pose": "00011",
+      "image_fingers": "22222",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_WANT.png"
+    },
+    {
+      "gesture": "LIKE",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 1,
+      "status": "reference",
+      "instructions": "Thumb and middle finger touch at the chest, pull outward and close. (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "I like this."
+      ],
+      "demo_pose": "11011",
+      "image_fingers": "11000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_LIKE.png"
+    },
+    {
+      "gesture": "LOVE",
+      "category": "word",
+      "shape": "ILY",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "🤟 'I love you' hand: thumb, index and pinky out, middle and ring folded.",
+      "sentence_examples": [
+        "I love you."
+      ],
+      "demo_pose": "11001",
+      "image_fingers": "00000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_LOVE.png"
+    },
+    {
+      "gesture": "WHERE",
+      "category": "word",
+      "shape": "ONE",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Index finger pointing straight up (ASL 'where' shakes it side to side).",
+      "sentence_examples": [
+        "Where is the hospital?"
+      ],
+      "demo_pose": "10101",
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_WHERE.png"
+    },
+    {
+      "gesture": "HUNGRY",
+      "category": "word",
+      "shape": "C",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "C hand: fingers together and curved, thumb opposite, like holding a cup.",
+      "sentence_examples": [
+        "I am hungry."
+      ],
+      "demo_pose": null,
+      "image_fingers": "11000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_HUNGRY.png"
+    },
+    {
+      "gesture": "THIRSTY",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 1,
+      "status": "reference",
+      "instructions": "Index finger draws a line down your throat. (Real ASL uses movement; this project treats it as an experimental static pose.) (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "I am thirsty."
+      ],
+      "demo_pose": null,
+      "image_fingers": "01000",
+      "orientation": "up",
+      "asl_motion": true,
+      "image": "word_THIRSTY.png"
+    },
+    {
+      "gesture": "IS",
+      "category": "word",
+      "shape": null,
+      "type": "static",
+      "hands": 1,
+      "status": "reference",
+      "instructions": "Touch your chin with the I hand and move it forward. Often skipped in ASL. (Not recognised by the camera yet — add it with the 'Add word' box.)",
+      "sentence_examples": [
+        "My name is Ali."
+      ],
+      "demo_pose": null,
+      "image_fingers": "00001",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_IS.png"
+    },
+    {
+      "gesture": "CALL",
+      "category": "word",
+      "shape": "Y",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "🤙 Y hand held like a phone: thumb and pinky out, other fingers folded.",
+      "sentence_examples": [
+        "Please call a doctor."
+      ],
+      "demo_pose": null,
+      "image_fingers": "10001",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_Y.png"
+    },
+    {
+      "gesture": "GREETING",
+      "category": "sentence",
+      "shape": "OPEN",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Open hand facing the camera, all five fingers spread ✋.",
+      "output": "Hello, how are you?",
+      "sentence_examples": [
+        "Hello, how are you?"
+      ],
+      "demo_pose": null,
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_HELLO.png"
+    },
+    {
+      "gesture": "NEED WATER",
+      "category": "sentence",
+      "shape": "W",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "W hand: index, middle and ring fingers up, thumb holds the pinky.",
+      "output": "I need water.",
+      "sentence_examples": [
+        "I need water."
+      ],
+      "demo_pose": null,
+      "image_fingers": "01110",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_WATER.png"
+    },
+    {
+      "gesture": "HUNGRY",
+      "category": "sentence",
+      "shape": "O",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "All fingertips touching the thumb tip (flat-O), like bringing food to the mouth.",
+      "output": "I am hungry. I need food.",
+      "sentence_examples": [
+        "I am hungry. I need food."
+      ],
+      "demo_pose": null,
+      "image_fingers": "00000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_FOOD.png"
+    },
+    {
+      "gesture": "MY NAME IS",
+      "category": "sentence",
+      "shape": "H",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "H hand: index + middle finger together, pointing sideways. Uses the name in the Name box.",
+      "output": "My name is {name}.",
+      "sentence_examples": [
+        "My name is {name}."
+      ],
+      "demo_pose": null,
+      "image_fingers": "01100",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_NAME.png"
+    },
+    {
+      "gesture": "PLEASE STOP",
+      "category": "sentence",
+      "shape": "PALM",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Flat palm towards the camera, fingers together and pointing up, thumb tucked in.",
+      "output": "Please stop!",
+      "sentence_examples": [
+        "Please stop!"
+      ],
+      "demo_pose": null,
+      "image_fingers": "01111",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_STOP.png"
+    },
+    {
+      "gesture": "PLEASE WAIT",
+      "category": "sentence",
+      "shape": "WAIT2",
+      "type": "static",
+      "hands": 2,
+      "status": "supported",
+      "instructions": "Both hands open towards the camera, held apart 🙌.",
+      "output": "Please wait a moment.",
+      "sentence_examples": [
+        "Please wait a moment."
+      ],
+      "demo_pose": null,
+      "image_fingers": "11111",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_WAIT.png"
+    },
+    {
+      "gesture": "I AM FINE",
+      "category": "sentence",
+      "shape": "THUMBS_UP",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "Thumbs up 👍.",
+      "output": "I am fine, thank you.",
+      "sentence_examples": [
+        "I am fine, thank you."
+      ],
+      "demo_pose": null,
+      "image_fingers": "10000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_GOOD.png"
+    },
+    {
+      "gesture": "CALL DOCTOR",
+      "category": "sentence",
+      "shape": "Y",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "🤙 phone hand: thumb and pinky out.",
+      "output": "Please call a doctor.",
+      "sentence_examples": [
+        "Please call a doctor."
+      ],
+      "demo_pose": null,
+      "image_fingers": "10001",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "alphabet_Y.png"
+    },
+    {
+      "gesture": "I LOVE YOU",
+      "category": "sentence",
+      "shape": "ILY",
+      "type": "static",
+      "hands": 1,
+      "status": "supported",
+      "instructions": "🤟 thumb, index and pinky out; middle and ring folded.",
+      "output": "I love you.",
+      "sentence_examples": [
+        "I love you."
+      ],
+      "demo_pose": null,
+      "image_fingers": "11001",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_LOVE.png"
+    },
+    {
+      "gesture": "HELP ME",
+      "category": "sentence",
+      "shape": "HELP2",
+      "type": "static",
+      "hands": 2,
+      "status": "supported",
+      "instructions": "Thumbs-up resting on the open palm of your other hand.",
+      "output": "Please help me.",
+      "sentence_examples": [
+        "Please help me."
+      ],
+      "demo_pose": null,
+      "image_fingers": "10000",
+      "orientation": "up",
+      "asl_motion": false,
+      "image": "word_HELP.png"
+    }
+  ]
+}
