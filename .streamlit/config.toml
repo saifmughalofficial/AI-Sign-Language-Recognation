@@ -1,14 +1,13 @@
 # Streamlit settings for the web edition (streamlit_app.py)
 
 [server]
-port = 8765                 # open http://localhost:8765 (Streamlit's default 8501 is not used)
+# No port here: Streamlit Cloud must use its default 8501. Locally run_streamlit.bat uses 8765.
 headless = true             # do not ask for an e-mail on first start
 runOnSave = false
 fileWatcherType = "none"
 
 [browser]
 gatherUsageStats = false    # nothing is sent to Streamlit
-serverAddress = "localhost"
 
 [theme]
 base = "dark"
