@@ -234,9 +234,27 @@ with st.expander("⚙ SETTINGS", expanded=False):
 # ===================================================================== main area
 left, right = st.columns([3, 2], gap="medium")
 
+TURN_KEYS = ("HF_TOKEN", "CLOUDFLARE_TURN_KEY_ID", "CLOUDFLARE_TURN_KEY_API_TOKEN",
+             "TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN")
+
+
+def _load_turn_secrets() -> bool:
+    """Copy TURN credentials from Streamlit Secrets into env vars, where streamlit-webrtc looks."""
+    try:
+        for key in TURN_KEYS:
+            if key in st.secrets and not os.environ.get(key):
+                os.environ[key] = str(st.secrets[key])
+    except Exception:  # noqa: BLE001 - no secrets file at all
+        pass
+    return any(os.environ.get(k) for k in TURN_KEYS)
+
+
 def _browser_camera() -> bool:
     """Cloud: the browser streams its webcam to engine.on_frame over WebRTC. Returns 'playing'."""
     from streamlit_webrtc import WebRtcMode, webrtc_streamer
+    if not _load_turn_secrets():
+        st.info("If the camera keeps loading and never starts, the network needs a TURN relay: add a free "
+                "Hugging Face token as `HF_TOKEN` in Manage app → Settings → Secrets.")
     ctx = webrtc_streamer(
         key="camera", mode=WebRtcMode.SENDRECV, video_frame_callback=make_callback(engine),
         media_stream_constraints={"video": {"width": {"ideal": 640}, "height": {"ideal": 480}}, "audio": False},
