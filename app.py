@@ -125,5 +125,18 @@ def main() -> int:
     return 0
 
 
+def _under_streamlit() -> bool:
+    """True when started with `streamlit run app.py` (e.g. on Streamlit Community Cloud)."""
+    try:
+        from streamlit.runtime import exists
+    except ImportError:
+        return False
+    return exists()
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    if _under_streamlit():                  # web edition - Tkinter has no screen on a server
+        import runpy
+        runpy.run_path(str(Path(__file__).with_name("streamlit_app.py")), run_name="__main__")
+    else:
+        sys.exit(main())

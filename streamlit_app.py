@@ -7,6 +7,10 @@ Smooth video: Python opens the webcam itself and streams the animated picture to
 page as MJPEG (http://127.0.0.1:8900/stream). Drawing takes a few ms per frame;
 MediaPipe + recognition run in their own background thread on the newest frame, so
 the picture never waits for the AI. No WebRTC, no STUN/TURN - nothing leaves the PC.
+
+On a server (Streamlit Community Cloud) there is no webcam, so the browser sends its
+camera over WebRTC instead (streamlit-webrtc); each visitor gets their own engine.
+Force this mode locally with:  set SIGN_CAMERA=browser
 """
 from __future__ import annotations
 
@@ -22,6 +26,8 @@ os.environ.setdefault("OPENCV_VIDEOIO_MSMF_ENABLE_HW_TRANSFORMS", "0")   # webca
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
+# Streamlit Community Cloud checks the repo out under /mount/src
+CLOUD = os.environ.get("SIGN_CAMERA", "").lower() == "browser" or str(ROOT).startswith("/mount/src")
 
 import streamlit as st  # noqa: E402
 import streamlit.components.v1 as components  # noqa: E402
@@ -33,8 +39,7 @@ from sentence.phrase_engine import PhraseEngine  # noqa: E402
 from sentence.sentence_builder import SentenceBuilder  # noqa: E402
 from ui.theme import THEMES  # noqa: E402
 from ui.web_hud import hud_html  # noqa: E402
-from vision.live_engine import LiveEngine  # noqa: E402
-from vision.mjpeg_stream import CameraStream  # noqa: E402
+from vision.live_engine import LiveEngine, make_callback  # noqa: E402
 from vision.shape_library import SHAPE_HINTS  # noqa: E402
 
 T = THEMES["dark"]                       # the original desktop palette (navy + sky blue)
@@ -53,8 +58,9 @@ STREAM_PORT = 8900
 
 
 @st.cache_resource
-def load_live() -> tuple[LiveEngine, CameraStream]:
+def load_live():
     """One engine + one webcam for the whole server (a webcam can only be opened once)."""
+    from vision.mjpeg_stream import CameraStream
     engine = LiveEngine(load_registry(), SettingsStore().load().user_name)
     return engine, CameraStream(engine, STREAM_PORT)
 
@@ -70,7 +76,12 @@ if "history" not in ss:              # first run of this browser session
     ss.flash = 0                    # sentence card flash counter
     ss.reply_text = ""
     ss.practice = dict(target="", score=0, streak=0, best=0, tries=0, event="", n=0, last="")
-engine, stream = load_live()
+if CLOUD:                            # every visitor uses their own browser camera + engine
+    if "engine" not in ss:
+        ss.engine = LiveEngine(registry, "")
+    engine, stream = ss.engine, None
+else:
+    engine, stream = load_live()
 if "builder" not in ss:
     ss.builder = SentenceBuilder(PhraseEngine(registry.phrases), lambda: engine.name)
 builder: SentenceBuilder = ss.builder
@@ -188,7 +199,8 @@ iframe {{ border:none; }}
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="top"><h1>SIGN LANGUAGE ASSISTANT</h1><span class="priv">🔒 Offline · Private</span></div>'
+PRIV = "🔒 Private · nothing is stored" if CLOUD else "🔒 Offline · Private"
+st.markdown(f'<div class="top"><h1>SIGN LANGUAGE ASSISTANT</h1><span class="priv">{PRIV}</span></div>'
             '<div class="banner">✨ Smart rule-based recognition is active — no training needed. '
             'Hold a pose until the ring around your hand fills.</div>', unsafe_allow_html=True)
 
@@ -203,16 +215,17 @@ with st.expander("⚙ SETTINGS", expanded=False):
         mirror = st.toggle("Mirror camera", value=engine.mirror)
         speak_words = st.toggle("Speak words", value=True)
         speak_sentences = st.toggle("Speak sentences", value=True)
-    with s5:
-        cam_index = int(st.number_input("Camera number", 0, 5, 0, help="0 = built-in webcam, 1 = USB camera"))
+    cam_index, resolution = 0, "640x480"
     g1, g2, g3 = st.columns(3)
     quality = g1.radio("Graphics", ["max", "balanced", "fast"], horizontal=True,
                        index=["max", "balanced", "fast"].index(engine.quality),
                        format_func=lambda q: {"max": "🔥 Max", "balanced": "⚖ Balanced", "fast": "⚡ Fast"}[q],
                        help="Max = neon glow, hologram, sparks. Fast = for slow PCs.")
-    resolution = g2.radio("Camera resolution", ["1280x720", "640x480"], horizontal=True,
-                          format_func=lambda r: "HD 720p" if r.startswith("1280") else "SD 480p",
-                          help="Used the next time the camera starts.")
+    if not CLOUD:                   # the browser picks its own camera in the cloud
+        cam_index = int(s5.number_input("Camera number", 0, 5, 0, help="0 = built-in webcam, 1 = USB camera"))
+        resolution = g2.radio("Camera resolution", ["1280x720", "640x480"], horizontal=True,
+                              format_func=lambda r: "HD 720p" if r.startswith("1280") else "SD 480p",
+                              help="Used the next time the camera starts.")
     accurate = g3.toggle("Accurate hand model", value=engine.accurate,
                          help="Off = faster MediaPipe model for slow PCs")
     st.caption(PRIVACY_NOTICE)
@@ -221,11 +234,25 @@ with st.expander("⚙ SETTINGS", expanded=False):
 # ===================================================================== main area
 left, right = st.columns([3, 2], gap="medium")
 
+def _browser_camera() -> bool:
+    """Cloud: the browser streams its webcam to engine.on_frame over WebRTC. Returns 'playing'."""
+    from streamlit_webrtc import WebRtcMode, webrtc_streamer
+    ctx = webrtc_streamer(
+        key="camera", mode=WebRtcMode.SENDRECV, video_frame_callback=make_callback(engine),
+        media_stream_constraints={"video": {"width": {"ideal": 640}, "height": {"ideal": 480}}, "audio": False},
+        async_processing=True)
+    return bool(ctx.state.playing)
+
+
 with left:
+    where = ("press START and allow camera access in your browser" if CLOUD
+             else "the camera is read directly by Python - no browser permission needed")
     st.markdown('<div class="card" style="padding:10px 16px;margin-bottom:6px"><h4 style="margin:0">CAMERA'
-                '<span class="live">● LIVE</span><span class="r">the camera is read directly by Python - no browser permission needed</span></h4></div>',
+                f'<span class="live">● LIVE</span><span class="r">{where}</span></h4></div>',
                 unsafe_allow_html=True)
-    if stream.running:
+    if CLOUD:
+        ss.cam_on = _browser_camera()
+    elif stream.running:
         st.markdown(f'<div class="camwrap"><img src="http://localhost:{STREAM_PORT}/stream?s={id(stream.camera)}" '
                     'alt="camera"></div>', unsafe_allow_html=True)
     else:
@@ -233,17 +260,18 @@ with left:
                     'Press START CAMERA to begin.</div>', unsafe_allow_html=True)
         if stream.error:
             st.warning(stream.error)
-    c_start, c_stop, _ = st.columns([1, 1, 2])
-    if c_start.button("▶ START CAMERA", type="primary", use_container_width=True, disabled=stream.running):
-        with st.spinner("Opening the webcam…"):
-            w, h = (int(v) for v in resolution.split("x"))
-            ok, msg = stream.start(cam_index, w, h)
-        if not ok:
-            st.error(msg)
-        st.rerun()
-    if c_stop.button("■ STOP CAMERA", use_container_width=True, disabled=not stream.running):
-        stream.stop()
-        st.rerun()
+    if not CLOUD:
+        c_start, c_stop, _ = st.columns([1, 1, 2])
+        if c_start.button("▶ START CAMERA", type="primary", use_container_width=True, disabled=stream.running):
+            with st.spinner("Opening the webcam…"):
+                w, h = (int(v) for v in resolution.split("x"))
+                ok, msg = stream.start(cam_index, w, h)
+            if not ok:
+                st.error(msg)
+            st.rerun()
+        if c_stop.button("■ STOP CAMERA", use_container_width=True, disabled=not stream.running):
+            stream.stop()
+            st.rerun()
 
     mode = st.segmented_control("MODE", MODES, default=engine.mode if engine.mode in MODES else "ALPHABET",
                                 key="mode_ctl") or "ALPHABET"
@@ -392,16 +420,57 @@ def live_panel() -> None:
           speechSynthesis.cancel(); speechSynthesis.speak(u);</script>""", 1)
 
 
+def _running() -> bool:
+    return bool(ss.get("cam_on")) if CLOUD else stream.running
+
+
+@st.fragment(run_every=0.25)
+def detection_card() -> None:
+    """Cloud version of the DETECTION card (the browser can't poll localhost:8900 there)."""
+    snap, running = engine.snapshot(drain=False), _running()
+    label = snap["label"] if running else None
+    if label:
+        a = ss.flip[1] + (ss.flip[0] != label)
+        ss.flip = (label, a)
+        pop = "popA" if a % 2 else "popB"
+        output = (snap["output"] or "").replace("{name}", snap["name"] or "…")
+        sub = f"“{output}”" if output else SHAPE_HINTS.get(snap["shape"] or "", "")
+        head = f'<div class="glabel {pop}{" long" if len(label) > 6 else ""}">{html.escape(label)}</div>'
+    else:
+        head, sub = '<div class="glabel idle">—</div>', ""
+    if not running:
+        hint, cls = "Camera is OFF — press START above and allow camera access.", "hint"
+    elif snap["locked"]:
+        hint, cls = "✓ Accepted — change the pose for the next sign", "hint okk"
+    elif label:
+        hint, cls = "Hold the pose steady until the bar fills…", "hint okk"
+    elif snap["hands"]:
+        hint, cls = f"Hand found — this pose is not a gesture in {snap['mode']} mode.", "hint"
+    else:
+        hint, cls = "No hand detected — show your hand inside the camera picture.", "hint"
+    conf = snap["conf"] if label else 0.0
+    color = T["ok"] if conf >= .8 else T["warn"] if conf >= snap["min_conf"] else T["danger"]
+    hold = 1.0 if snap["locked"] else (snap["progress"] if label else 0.0)
+    fingers = snap["fingers"] if running else [0.0] * 5
+    bars = "".join(f'<div class="finger"><div class="bar"><div style="height:{v * 100:.0f}%;background:{c}">'
+                   f'</div></div>{n}</div>' for v, c, n in zip(fingers, FINGER_HEX, ("THUMB", "INDEX", "MIDDLE", "RING", "PINKY")))
+    st.markdown(f"""<div class="card"><h4>DETECTION<span class="r">{html.escape(snap['mode'])}</span></h4>
+      {head}<div class="sub">{html.escape(sub)}</div>
+      {_meter(f"Confidence: {conf * 100:.0f}%" if label else "Confidence: —", conf, color, not label)}
+      {_meter("Hold", hold, T["ok"] if snap["locked"] else T["accent"], not label)}
+      <div class="fingers">{bars}</div><div class="{cls}">{html.escape(hint)}</div></div>""", unsafe_allow_html=True)
+
+
 @st.fragment(run_every=0.5)
 def status_chips() -> None:
     snap = engine.snapshot(drain=False)
-    running = stream.running
+    running = _running()
     on = lambda ok: "on" if ok else "off"  # noqa: E731
     stats = (f'<span class="{on(running)}">● Camera: {"Active" if running else "Off"}</span>'
              f'<span class="{on(snap["hands"])}">● Hand: {"Detected" if snap["hands"] else "Not detected"}</span>'
              f'<span class="{on(running)}">● Recognition: {"Active" if running else "Off"}</span>')
     if running:
-        cam = stream.camera
+        cam = None if CLOUD else stream.camera
         info = f" · {cam.backend} {stream.size[0]}x{stream.size[1]}" if cam else ""
         stats += f'<span class="off">{snap["cam_fps"]:.0f} FPS · AI {snap["ai_fps"]:.0f}/s{info}</span>'
     tip = TIPS[int(time.time() / 5) % len(TIPS)] if TIPS else ""
@@ -412,7 +481,10 @@ with left:
     status_chips()
 
 with right:
-    _iframe(hud_html(T, STREAM_PORT), 372)   # live DETECTION card (browser-side, 20 updates/s)
+    if CLOUD:
+        detection_card()
+    else:
+        _iframe(hud_html(T, STREAM_PORT), 372)   # live DETECTION card (browser-side, 20 updates/s)
     live_panel()
 
 # ===================================================================== bottom
