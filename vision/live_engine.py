@@ -1,4 +1,4 @@
-"""Live webcam engine for the Streamlit edition.
+﻿"""Live webcam engine for the Streamlit edition.
 
 Two threads, so the video never waits for the AI:
 * on_frame()  - called for EVERY browser frame: mirror + draw the HandFX animations (~4 ms)
@@ -14,7 +14,7 @@ import cv2
 import numpy as np
 
 from core.registry import GestureRegistry
-from ui.theme import THEMES
+from ui.colors import THEMES
 from vision.gesture_recognizer import GestureRecognizer
 from vision.gesture_stabilizer import GestureStabilizer
 from vision.hand_detector import HandDetector

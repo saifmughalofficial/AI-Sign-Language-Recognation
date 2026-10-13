@@ -1,4 +1,4 @@
-"""Sign Language Assistant - Streamlit web edition (same look as the desktop app).
+﻿"""Sign Language Assistant - Streamlit web edition (same look as the desktop app).
 
 Start:   streamlit run streamlit_app.py        (or double-click run_streamlit.bat)
 Opens:   http://localhost:8899                 (port is set in .streamlit/config.toml)
@@ -37,7 +37,7 @@ from core.registry import GestureRegistry  # noqa: E402
 from core.settings import SettingsStore  # noqa: E402
 from sentence.phrase_engine import PhraseEngine  # noqa: E402
 from sentence.sentence_builder import SentenceBuilder  # noqa: E402
-from ui.theme import THEMES  # noqa: E402
+from ui.colors import THEMES  # noqa: E402
 from ui.web_hud import hud_html  # noqa: E402
 from vision.live_engine import LiveEngine, make_callback  # noqa: E402
 from vision.shape_library import SHAPE_HINTS  # noqa: E402
