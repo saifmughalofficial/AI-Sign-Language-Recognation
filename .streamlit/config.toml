@@ -4,7 +4,6 @@
 # No port here: Streamlit Cloud must use its default 8501. Locally run_streamlit.bat uses 8765.
 headless = true             # do not ask for an e-mail on first start
 runOnSave = false
-fileWatcherType = "none"
 
 [browser]
 gatherUsageStats = false    # nothing is sent to Streamlit
