@@ -41,7 +41,8 @@ const MODEL = "https://storage.googleapis.com/mediapipe-models/hand_landmarker/h
 const BONES = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[5,9],[9,10],[10,11],[11,12],[9,13],[13,14],
                [14,15],[15,16],[13,17],[0,17],[17,18],[18,19],[19,20]];
 const FCOL = ["#FF69B4", "#FFA03C", "#FADC3C", "#64E678", "#50D2FA"];
-const SEND_MS = 120;
+const SEND_MS = 250;        // hand points -> server at most 4x/s (each one is a page rerun)
+const IDLE_MS = 2000;       // no hand in view: only a heartbeat every 2 s
 
 function el(S, cls) { return S.parent ? S.parent.querySelector("." + cls) : null; }
 function status(S, text) { S.statusText = text; const s = el(S, "sc-status"); if (s) s.textContent = text; }
@@ -140,6 +141,10 @@ function sendHands(S) {
   // never pile up and interrupt each other; resend after 1.5 s in case a message was lost
   readState(S);
   if ((S.data.ack || 0) < (S.seq || 0) && now - S.lastSend < 1500) return;
+  // nothing new for the server while no hand is visible (it already knows) -> fewer reruns, smoother phone
+  const has = S.hands.length > 0;
+  if (!has && !S.hadHand && now - S.lastSend < IDLE_MS) return;
+  S.hadHand = has;
   S.lastSend = now;
   send(S, S.hands.map((hand) => ({ side: hand.side, score: hand.score,
     lm: hand.lm.map((p) => [+p.x.toFixed(4), +p.y.toFixed(4), +p.z.toFixed(4)]) })), v.videoWidth, v.videoHeight);
