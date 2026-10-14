@@ -1,4 +1,4 @@
-# Web edition (streamlit_app.py) - this is the file Streamlit Community Cloud installs (on every push).
+# Web edition (streamlit_app.py) - this is the file Streamlit Community Cloud installs (on every push; after a code-only push use Manage app > Reboot).
 # The Windows desktop app (app.py + Tkinter, offline voice) uses requirements-desktop.txt.
 
 streamlit>=1.64          # st.components.v2 (browser camera)
