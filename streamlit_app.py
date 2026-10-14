@@ -235,21 +235,24 @@ with st.expander("⚙ SETTINGS", expanded=False):
 # ===================================================================== main area
 left, right = st.columns([3, 2], gap="medium")
 
-@st.fragment
 def browser_camera_panel() -> None:
     """Cloud: the browser detects hands itself and sends only the hand points (no video upload,
-    no WebRTC/TURN). Each message reruns just this fragment and feeds the recognizer."""
+    no WebRTC/TURN). Each message is one normal app rerun that feeds the recognizer; the browser
+    sends the next one only after it sees the `ack` below, so reruns never pile up."""
     from ui.browser_cam import browser_camera
-    snap = engine.snapshot(drain=False)
-    label = None
-    if snap["label"]:
-        label = (snap["output"] or "").replace("{name}", snap["name"] or "…") or snap["label"]
-    frame, hands = browser_camera(dict(mirror=engine.mirror, label=label, progress=snap["progress"],
-                                       locked=snap["locked"]))
+    frame, hands = browser_camera(dict(mirror=engine.mirror))
     if frame is not None and frame.get("seq") != ss.get("cam_seq"):     # state persists: only new messages
         ss.cam_seq = frame.get("seq")
         ss.cam_on = bool(frame.get("running"))
         engine.on_landmarks(hands if ss.cam_on else [], float(frame.get("fps") or 0))
+    snap = engine.snapshot(drain=False)       # results for the browser: label on the video + ack
+    label = None
+    if snap["label"]:
+        label = (snap["output"] or "").replace("{name}", snap["name"] or "…") or snap["label"]
+    state = dict(ack=ss.get("cam_seq") or 0, label=label, locked=snap["locked"], mirror=engine.mirror,
+                 progress=1.0 if snap["locked"] else (snap["progress"] if label else 0.0))
+    st.markdown(f'<div class="sign-state" style="display:none">{html.escape(json.dumps(state))}</div>',
+                unsafe_allow_html=True)
 
 
 with left:
