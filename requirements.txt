@@ -1,7 +1,7 @@
 # Web edition (streamlit_app.py) - this is the file Streamlit Community Cloud installs (on every push; after a code-only push use Manage app > Reboot).
 # The Windows desktop app (app.py + Tkinter, offline voice) uses requirements-desktop.txt.
 
-streamlit>=1.64          # st.components.v2 (browser camera)
+streamlit>=1.64            # st.components.v2 (browser camera)
 # 0.10.30+ installs on every Python version and works with Streamlit's protobuf.
 # It uses models/hand_landmarker.task (already in the repo).
 mediapipe>=0.10.30,<0.11

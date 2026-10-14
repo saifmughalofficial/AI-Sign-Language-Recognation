@@ -43,6 +43,9 @@ from ui.web_hud import hud_html  # noqa: E402
 from vision.live_engine import LiveEngine  # noqa: E402
 from vision.shape_library import SHAPE_HINTS  # noqa: E402
 
+# Live panels refresh themselves. In the cloud every hand message already reruns the whole page, so
+# slow timers are enough there and keep phones smooth (each refresh re-renders part of the page).
+REFRESH, REFRESH_SLOW = (1.0, 1.0) if CLOUD else (0.25, 0.5)
 T = THEMES["dark"]                    # the original desktop palette (navy + sky blue)
 FINGER_HEX = ["#FF69B4", "#FFA03C", "#FADC3C", "#64E678", "#50D2FA"]
 
@@ -372,7 +375,7 @@ def _practice_result(label: str) -> None:
         pr["streak"], pr["event"] = 0, "miss"
 
 
-@st.fragment(run_every=0.25)
+@st.fragment(run_every=REFRESH)
 def live_panel() -> None:
     snap = engine.snapshot()
 
@@ -435,7 +438,7 @@ def _running() -> bool:
     return bool(ss.get("cam_on")) if CLOUD else stream.running
 
 
-@st.fragment(run_every=0.25)
+@st.fragment(run_every=REFRESH)
 def detection_card() -> None:
     """Cloud version of the DETECTION card (the browser can't poll localhost:8900 there)."""
     snap, running = engine.snapshot(drain=False), _running()
@@ -472,7 +475,7 @@ def detection_card() -> None:
       <div class="fingers">{bars}</div><div class="{cls}">{html.escape(hint)}</div></div>""", unsafe_allow_html=True)
 
 
-@st.fragment(run_every=0.5)
+@st.fragment(run_every=REFRESH_SLOW)
 def status_chips() -> None:
     snap = engine.snapshot(drain=False)
     running = _running()
